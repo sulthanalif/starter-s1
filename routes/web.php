@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
+use Spatie\Activitylog\Models\Activity;
 
 Route::middleware('guest')->group(function () {
     Route::get('/', function () {
@@ -10,6 +11,10 @@ Route::middleware('guest')->group(function () {
     });
 
     Volt::route('/login', 'login')->name('login');
+});
+
+Route::get('/coba', function (){
+    return response()->json(Activity::with('causer')->get()->last());
 });
 
 Route::group(['middleware' => 'auth'], function () {
@@ -26,4 +31,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     //users
     Volt::route('/users', 'cms.users.index')->middleware('can:user-page')->name('users');
+
+    //logs activity
+    Volt::route('/logs', 'cms.logs')->middleware('can:log-page')->name('logs');
 });

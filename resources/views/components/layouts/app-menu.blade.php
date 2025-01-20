@@ -10,3 +10,6 @@
         <x-menu-item title="Archives" icon="o-archive-box" link="####" /> --}}
     </x-menu-sub>
 @endcan
+@can('log-page')
+    <x-menu-item title="Logs Activity" icon="o-home" link="{{ route('logs') }}" wire:navigate />
+@endcan

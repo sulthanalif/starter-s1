@@ -33,6 +33,8 @@ class DatabaseSeeder extends Seeder
         Permission::create(['name' => 'user-create']);
         Permission::create(['name' => 'user-edit']);
         Permission::create(['name' => 'user-delete']);
+        Permission::create(['name' => 'log-page']);
+        Permission::create(['name' => 'log-delete']);
 
         $roleSuperAdmin->givePermissionTo(Permission::all());
         $roleAdmin->givePermissionTo(Permission::where('name', 'dashboard-page')->first());
